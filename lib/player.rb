@@ -8,6 +8,8 @@ attr_reader :name, :hp
   end
 
   def attacked
-    @hp -= (1 + rand(10))
+    #@hp -= (1 + rand(10))
+    @hp -= 10
   end
+
 end
