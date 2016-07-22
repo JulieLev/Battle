@@ -16,9 +16,9 @@ describe 'Player' do
   end
 
   describe '#attacked' do
-    it 'loses 10 HP when attacked' do
-      expect{ player2.attacked }.to change { player2.hp }.by(-10)
+    it 'loses 5 HP when attacked' do
+      #allow(Kernel).to receive(:rand).and_return(5)
+      expect { player2.attacked }.to change { player2.hp }.by(-10)
     end
   end
-
 end
