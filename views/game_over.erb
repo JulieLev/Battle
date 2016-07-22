@@ -9,10 +9,6 @@
 </div>
 
 <br>
-<%= @game.current_turn.name %>'s turn
-<br>
-<div>
-  <form action="/attack">
-  <input type="submit" value="Attack">
-</form>
-</div>
+<h1>
+  <%= @game.loser.name %> loses!
+</h1>

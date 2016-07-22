@@ -14,9 +14,9 @@ describe 'Player' do
       expect(player1.hp).to eq Player::DEFAULT_HIT_POINTS
     end
   end
-
+  
   describe '#attacked' do
-    it 'loses 5 HP when attacked' do
+    it 'loses 10 HP when attacked' do
       #allow(Kernel).to receive(:rand).and_return(5)
       expect { player2.attacked }.to change { player2.hp }.by(-10)
     end

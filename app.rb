@@ -5,7 +5,10 @@ require_relative 'lib/game'
 class Battle < Sinatra::Base
 
   enable :sessions
-  STARTING_HIT_POINTS = 60
+
+  before do
+    @game = Game.instance
+  end
 
   get '/' do
     erb :index
@@ -14,19 +17,25 @@ class Battle < Sinatra::Base
   post '/names' do
     player1 = Player.new(params[:player_1_name])
     player2 = Player.new(params[:player_2_name])
-    $game = Game.new(player1, player2)
+    @game = Game.create(player1, player2)
     redirect '/play'
   end
 
   get '/play' do
-    @game = $game
     erb :play
   end
 
-  get '/attack' do
-    @game = $game
+  post '/attack' do
     @game.attack
-    erb :attack
+    if @game.game_over?
+      redirect '/game_over'
+    else
+      redirect '/attack'
+    end
+  end
+
+  get '/game_over' do
+    erb :game_over
   end
   # start the server if ruby file executed directly
   run! if app_file == $0
